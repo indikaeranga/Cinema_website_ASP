@@ -23,6 +23,7 @@ namespace Cinema
                     if (int.TryParse(Request.QueryString["Schedule_ID"], out ScheduleID))
                     {
                         // Fetch movie details from the database using the Movie_ID parameter
+                        
                         DataTable movieData = GetMovieticketpriceFromDatabase(ScheduleID);
 
                         if (movieData.Rows.Count > 0)
@@ -50,9 +51,74 @@ namespace Cinema
             }
         }
 
+        protected int scheduleid(int scheduleid) { return scheduleid; }
         protected void BtnAdd_Click(object sender, EventArgs e)
         {
+            // Get values from the ASP.NET controls
+            int adult_count, child_count;
 
+            if (int.TryParse(Textadult.Text, out adult_count) == false)
+            {
+                adult_count = 0;
+            }
+            else
+            {
+                adult_count = Int32.Parse(Textadult.Text);
+            }
+
+            if (int.TryParse(Textchild.Text, out child_count) == false)
+            {
+                child_count = 0;
+            }
+            else
+            {
+                child_count = Int32.Parse(Textchild.Text);
+            }
+            
+            float adult_price = float.Parse(lbladultprice.Text);
+            float child_price = float.Parse(lblchildprice.Text);
+
+            int moviescheduleid;
+            if (int.TryParse(Request.QueryString["Schedule_ID"], out moviescheduleid))
+            {
+                moviescheduleid = moviescheduleid;
+            }
+            else
+            {
+               
+            }
+
+            float totalprice = (adult_count * adult_price) + (child_count * child_price);
+            int totseat = (adult_count+ child_count);
+            // Create a connection to the database
+            SqlConnection con = new SqlConnection(cn.connectionstring());
+            using (con)
+            {
+                // SQL INSERT statement
+                string insertQuery = "INSERT INTO Seat_Reservation_New (Schedule_ID, Adult_Seats, Child_Seats, No_Of_Seats, Total_Price) " +
+                                     "VALUES (@Schedule_ID, @Adult_Seats, @Child_Seats, @No_Of_Seats, @Total_Price)";
+
+                SqlCommand command = new SqlCommand(insertQuery, con);
+                command.Parameters.AddWithValue("@Schedule_ID", moviescheduleid);
+                command.Parameters.AddWithValue("@Adult_Seats", adult_count);
+                command.Parameters.AddWithValue("@Child_Seats", child_count);
+                command.Parameters.AddWithValue("@No_Of_Seats", totseat);
+                command.Parameters.AddWithValue("@Total_Price", totalprice);                             
+
+                try
+                {
+                    con.Open();
+                    command.ExecuteNonQuery();                  
+                    con.Close();
+                    Response.Redirect("User_Tickets_Details.aspx");
+                }
+                catch (Exception ex)
+                {
+                    string script = "alert('Incorrect details. Please try again!');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+
+                }
+            }
         }
         protected DataTable GetMovieticketpriceFromDatabase(int ScheduleID)
         {

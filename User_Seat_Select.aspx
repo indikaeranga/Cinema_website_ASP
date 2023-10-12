@@ -36,7 +36,7 @@
                                                     <!--    </center> -->
                                                     <div class="col-md-12">
                                                         <br />
-                                                        <asp:Button ID="BtnAdd" runat="server" class="btn btn-primary" Text="Book Now" OnClick="BtnAdd_Click" />
+                                                        <asp:Button ID="BtnAdd" runat="server" OnClientClick="return validateTextBoxes();"  class="btn btn-primary" Text="Book Now" OnClick="BtnAdd_Click"/>
 
 
                                                     </div>
@@ -122,6 +122,19 @@
     // You can call calculateTotalPrice whenever you want to update the total price dynamically
 </script>
 
+    <script>
+        function validateTextBoxes() {
+            var adultTextBox = document.getElementById('<%= Textadult.ClientID %>');
+        var childTextBox = document.getElementById('<%= Textchild.ClientID %>');
+
+            if (adultTextBox.value.trim() === "" && childTextBox.value.trim() === "") {
+                alert("At least adult or child ticket should be select.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 
 
 </asp:Content>
