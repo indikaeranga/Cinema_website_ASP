@@ -28,6 +28,7 @@ namespace Cinema
                 if (!IsPostBack)
                 {
                     BindGridView();
+                    Calendar1.SelectedDate = DateTime.Today;
                 }
             }
         }

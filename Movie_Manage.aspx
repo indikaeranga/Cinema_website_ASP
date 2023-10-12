@@ -26,7 +26,7 @@
                             <div class="col">
                             <!--    <center> -->
                                 <div class="col-md-12">
-                                    <label for="exampleInputEmail1" class="form-label">Movie Name</label>
+                                    <label for="moviename" class="form-label">Movie Name</label>
                                     <asp:TextBox ID="Textmoviename" type="Text" class="form-control" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="col-md-12"> <br />
@@ -36,7 +36,7 @@
                                 <div class="col-md-12">
                                     <br />
                                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">                                                                            
-                                        <asp:RadioButton GroupName="RadioGroup" ID="RadioButton1" runat="server" class="btn-check"  Text="  Active"/> <br />&nbsp;&nbsp;&nbsp;&nbsp;                                                                        
+                                        <asp:RadioButton GroupName="RadioGroup" ID="RadioButton1" runat="server" class="btn-check" Text="  Active" Checked="True" /> <br />&nbsp;&nbsp;&nbsp;&nbsp;                                                                        
                                         <asp:RadioButton GroupName="RadioGroup" class="btn-check" ID="RadioButton2" runat="server" Text="  InActive"/>&nbsp;&nbsp;&nbsp;&nbsp;
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <br />
-                                    <asp:Button ID="bthAdd" class="btn btn-primary" runat="server" Text="Add New" OnClick="bthAdd_Click" />
+                                    <asp:Button ID="bthAdd" onClientClick="return validateForm();" class="btn btn-primary" runat="server" Text="Add New"  OnClick="bthAdd_Click" />
                                     <asp:Button ID="btnUpdate" class="btn btn-warning" runat="server" Text="Update" />
 
                                 </div>
@@ -81,4 +81,39 @@
         </div>
         </div>
     <!-- movie section end -->
+
+    <script type="text/javascript">
+    function validateForm() {
+        var moviename = document.getElementById('<%= Textmoviename.ClientID %>').value;
+        var description = document.getElementById('<%= TextDescription.ClientID %>').value;
+        var fileUpload = document.getElementById('<%= FileUpload1.ClientID %>');
+
+        if (moviename === '') {
+            alert('Please enter a Movie Name.');
+            return false; // Prevent the form from submitting
+        }
+        if (moviename.length > 20) {
+            alert('Movie Name should not exceed 20 characters.');
+            return false;
+        }
+
+        if (description === '') {
+            alert('Please enter a Description.');
+            return false;
+        }
+        if (description.length > 225) {
+            alert('Description should not exceed 225 characters.');
+            return false;
+        }
+
+        // Check if FileUpload is empty
+        if (fileUpload && fileUpload.value === '') {
+            alert('Please select a movie image file.');
+            return false;
+        }
+        // If all checks pass, the form will submit
+        return true;
+    }
+    </script>
+  
 </asp:Content>

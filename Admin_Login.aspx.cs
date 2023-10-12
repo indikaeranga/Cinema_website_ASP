@@ -59,7 +59,10 @@ namespace Cinema
                     }
                     else
                     {
-                        //MessageBox.Show("Please check your username and password.");
+                        // Display an error message if login details are incorrect
+                        string script = "alert('Incorrect login details. Please try again!');";
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+
                     }
                 }
                 catch (Exception ex)
@@ -70,5 +73,6 @@ namespace Cinema
             }
             else {}
         }
+
     }
 }

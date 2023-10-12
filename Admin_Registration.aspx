@@ -25,11 +25,12 @@
                             <div class="col">
                             <!--    <center> -->
                                 <div class="col-md-12">
-                                    <label for="exampleInputEmail1" class="form-label">Name</label>
-                                    <asp:TextBox ID="TextName" runat="server" class="form-control"></asp:TextBox>
+                                    <label for="nameinput" class="form-label">Name</label>
+                                    <asp:TextBox ID="TextName" runat="server" type="text" class="form-control"></asp:TextBox>                              
+                                    
                                 </div>
                                 <div class="col-md-12">
-                                    <label for="exampleInputEmail1" class="form-label">User Name</label>
+                                    <label for="usernameinput" class="form-label">User Name</label>
                                     <asp:TextBox ID="TextUserName" type="text" runat="server" class="form-control"></asp:TextBox>                                 
                                 </div>
                                 <div class="col-md-12">
@@ -43,7 +44,7 @@
                                 <!--    </center> -->
                                 <div class="col-md-12">
                                     <br />
-                                    <asp:Button ID="BtnAdd" runat="server" class="btn btn-primary" Text="Add New" OnClick="BtnAdd_Click" />
+                                    <asp:Button ID="BtnAdd" runat="server" OnClientClick="return validateForm();" class="btn btn-primary" Text="Add New" OnClick="BtnAdd_Click" />
                                     <asp:Button ID="BtnUpdate" runat="server"  class="btn btn-warning" Text="Update" />
                                     <asp:Button ID="BtnDelete" runat="server"  class="btn btn-danger" Text="Delete" />
                                     
@@ -70,4 +71,53 @@
             </div>
         </div>
         </div>
+
+  <script type="text/javascript">
+      function validateForm() {
+        var name = document.getElementById('<%= TextName.ClientID %>').value;
+        var username = document.getElementById('<%= TextUserName.ClientID %>').value;
+        var email = document.getElementById('<%= TextEmail.ClientID %>').value;
+        var password = document.getElementById('<%= TextPassword.ClientID %>').value;
+
+          if (name === '') {
+              alert('Please enter a name.');
+              return false; // Prevent the form from submitting
+          }
+          if (name.length > 20) {
+              alert('Name should not exceed 20 characters.');
+              return false;
+          }
+
+          if (username === '') {
+              alert('Please enter a username.');
+              return false;
+          }
+          if (username.length > 50) {
+              alert('Username should not exceed 50 characters.');
+              return false;
+          }
+
+          if (email === '') {
+              alert('Please enter an email address.');
+              return false;
+          }
+
+          if (password === '') {
+              alert('Please enter a password.');
+              return false;
+          }
+          if (password.length < 8) {
+              alert('Password should be at least 8 characters.');
+              return false;
+          }
+          if (!/[a-z]/.test(password) || !/[A-Z]/.test(password)) {
+              alert('Password should contain both upper and lower case characters.');
+              return false;
+          }
+
+          // If all checks pass, the form will submit
+          return true;
+      }
+  </script>
+
 </asp:Content>
