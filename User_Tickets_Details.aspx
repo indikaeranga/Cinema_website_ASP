@@ -10,32 +10,33 @@
                      <h1 class="fashion_taital">Your Booking Details</h1>
                      <div class="fashion_section_2">
                         
-                         <div class="row">
-                                <div class="col-md-5">
+                         <div class="row"> 
+                                <div class="col-md-5 mx-auto">
                                     <div class="card">
 
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
                                                     <!--    <center> -->
+                                                 
+                                                 
                                                     <div class="col-md-12">
-                                                        <label for="adultSeat" class="form-label">Adult Seat</label>
-                                                        <asp:TextBox ID="Textadult" runat="server" class="form-control" TextMode="Number" MaxLength="0"></asp:TextBox>
+                                                        <label for="totcount" class="form-label">Reservation ID : <span id="rid">0</span></label> <br />
+                                                        <label for="totcount" class="form-label">Movie Name : <span id="movie">0</span></label> <br />
+                                                        <label for="totcount" class="form-label">Theater : <span id="theater">0</span></label> <br />
+                                                        <label for="totcount" class="form-label">Date : <span id="moviedate">0</span></label> <br />
+                                                        <label for="totcount" class="form-label">Time : <span id="movietime">0</span></label> <br />
+                                                        <label for="totcount" class="form-label">Adult Count : <span id="adultcount">0</span></label> <br />
+                                                        <label for="totcount" class="form-label">Child Count : <span id="childcount">0</span></label> <br />
+                                                        <label for="totcount" class="form-label">Total Price : <span id="price">0</span></label> <br />
+                                                       <br />
+                                                     <h2>  <label for="price" class="form-label">Thank you and enjoy the movie! <span id="thank you"></span></label></h2> <hr />
                                                     </div>
-                                                    <div class="col-md-12">
-                                                        <label for="childSeat" class="form-label">Child Seat</label>
-                                                        <asp:TextBox ID="Textchild" type="text" runat="server" class="form-control" TextMode="Number" MaxLength="0"></asp:TextBox>
-                                                    </div>
-                                                    <br />
-                                                    <div class="col-md-12">
-                                                        <label for="totcount" class="form-label">Total Count : <span id="totalCount">0</span></label>
-                                                        <label for="price" class="form-label">Total Price : <span id="totalPrice">0</span></label>
-                                                    </div>
-
+                                                    
                                                     <!--    </center> -->
                                                     <div class="col-md-12">
                                                         <br />
-                                                        <asp:Button ID="BtnAdd" runat="server" class="btn btn-primary" Text="Book Now" OnClick="BtnAdd_Click" />
+                                                        <asp:Button ID="BtnAdd" runat="server" class="btn btn-primary" Text="Download Ticket" OnClick="BtnAdd_Click" />
 
 
                                                     </div>
@@ -45,16 +46,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-7">
-
-                                    <div class="row">
-                                        <div class="col">
-                                        
-                                            
-                                        </div>
-                                    </div>
-
-                                </div>
+                             
                             </div>
                         </div>
                 </div>
