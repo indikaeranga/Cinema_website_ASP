@@ -27,10 +27,14 @@
                                                         <label for="childSeat" class="form-label">Child Seat</label>
                                                         <asp:TextBox ID="Textchild" type="text" runat="server" class="form-control" TextMode="Number" MaxLength="0"></asp:TextBox>
                                                     </div>
+                                                    <div class="col-md-12">
+                                                        <label for="phonenm" class="form-label">Phone</label>
+                                                        <asp:TextBox ID="txtphonenumber" type="text" runat="server" class="form-control" TextMode="Number" MaxLength="0"></asp:TextBox>
+                                                    </div>
                                                     <br />
                                                     <div class="col-md-12">
                                                         <label for="totcount" class="form-label">Total Count : <span id="totalCount">0</span></label>
-                                                        <label for="price" class="form-label">Total Price : <span id="totalPrice">0</span></label>
+                                                        <label for="price" class="form-label"> <span id="totalPrice"></span></label>
                                                     </div>
 
                                                     <!--    </center> -->
@@ -125,10 +129,16 @@
     <script>
         function validateTextBoxes() {
             var adultTextBox = document.getElementById('<%= Textadult.ClientID %>');
-        var childTextBox = document.getElementById('<%= Textchild.ClientID %>');
+            var childTextBox = document.getElementById('<%= Textchild.ClientID %>');
+            var phone = document.getElementById('<%= txtphonenumber.ClientID %>');
 
             if (adultTextBox.value.trim() === "" && childTextBox.value.trim() === "") {
                 alert("At least adult or child ticket should be select.");
+                return false;
+            }
+
+            if (phone.value.trim().length != 10 ) {
+                alert('Enter 10 digit phone number');
                 return false;
             }
 

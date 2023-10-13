@@ -77,7 +77,7 @@ namespace Cinema
             
             float adult_price = float.Parse(lbladultprice.Text);
             float child_price = float.Parse(lblchildprice.Text);
-
+            string phone = txtphonenumber.Text;
             int moviescheduleid;
             if (int.TryParse(Request.QueryString["Schedule_ID"], out moviescheduleid))
             {
@@ -95,22 +95,22 @@ namespace Cinema
             using (con)
             {
                 // SQL INSERT statement
-                string insertQuery = "INSERT INTO Seat_Reservation_New (Schedule_ID, Adult_Seats, Child_Seats, No_Of_Seats, Total_Price) " +
-                                     "VALUES (@Schedule_ID, @Adult_Seats, @Child_Seats, @No_Of_Seats, @Total_Price)";
+                string insertQuery = "INSERT INTO Seat_Reservation_New (Schedule_ID, Adult_Seats, Child_Seats, No_Of_Seats, Total_Price, phone) " +
+                                     "VALUES (@Schedule_ID, @Adult_Seats, @Child_Seats, @No_Of_Seats, @Total_Price, @phone)";
 
                 SqlCommand command = new SqlCommand(insertQuery, con);
                 command.Parameters.AddWithValue("@Schedule_ID", moviescheduleid);
                 command.Parameters.AddWithValue("@Adult_Seats", adult_count);
                 command.Parameters.AddWithValue("@Child_Seats", child_count);
                 command.Parameters.AddWithValue("@No_Of_Seats", totseat);
-                command.Parameters.AddWithValue("@Total_Price", totalprice);                             
-
+                command.Parameters.AddWithValue("@Total_Price", totalprice);
+                command.Parameters.AddWithValue("@Phone", phone);
                 try
                 {
                     con.Open();
                     command.ExecuteNonQuery();                  
                     con.Close();
-                    Response.Redirect("User_Tickets_Details.aspx");
+                    Response.Redirect("User_Tickets_Details.aspx?PN='"+phone+"'");
                 }
                 catch (Exception ex)
                 {

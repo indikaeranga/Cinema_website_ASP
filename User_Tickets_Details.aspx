@@ -21,15 +21,46 @@
                                                  
                                                  
                                                     <div class="col-md-12">
-                                                        <label for="totcount" class="form-label">Reservation ID : <span id="rid">0</span></label> <br />
-                                                        <label for="totcount" class="form-label">Movie Name : <span id="movie">0</span></label> <br />
-                                                        <label for="totcount" class="form-label">Theater : <span id="theater">0</span></label> <br />
-                                                        <label for="totcount" class="form-label">Date : <span id="moviedate">0</span></label> <br />
-                                                        <label for="totcount" class="form-label">Time : <span id="movietime">0</span></label> <br />
-                                                        <label for="totcount" class="form-label">Adult Count : <span id="adultcount">0</span></label> <br />
-                                                        <label for="totcount" class="form-label">Child Count : <span id="childcount">0</span></label> <br />
-                                                        <label for="totcount" class="form-label">Total Price : <span id="price">0</span></label> <br />
-                                                       <br />
+                                                        <label for="totcount" class="form-label">Reservation ID :</label>
+                                                         <asp:Label ID="lblrid" class="card-title" runat="server"></asp:Label>
+                                                        <br />
+                                                       
+                                                        <label for="totcount" class="form-label">Movie Name : </label>
+                                                        <asp:Label ID="lblMoviename" class="card-title" runat="server" ></asp:Label>
+                                                        <br />
+
+                                                        <label for="totcount" class="form-label">Theater : </label> 
+                                                        <asp:Label ID="lbltheater" class="card-title" runat="server" ></asp:Label>
+                                                        <br />
+
+                                                        <label for="totcount" class="form-label">Date : </label> 
+                                                        <asp:Label ID="lbldate" class="card-title" runat="server" ></asp:Label>
+                                                        <br />
+
+                                                        <label for="totcount" class="form-label">Time : </label>
+                                                        <asp:Label ID="lbltime" class="card-title" runat="server" ></asp:Label>
+                                                        <br />
+
+                                                        <label for="totcount" class="form-label">Adult Count : </label>
+                                                        <asp:Label ID="lbladultcount" class="card-title" runat="server" ></asp:Label>
+                                                        <br />
+
+                                                        <label for="totcount" class="form-label">Child Count : </label>
+                                                        <asp:Label ID="lblchildcount" class="card-title" runat="server" ></asp:Label>
+                                                        <br />
+
+                                                        <label for="totcount" class="form-label">Total Count : </label>
+                                                        <asp:Label ID="lbltotalcount" class="card-title" runat="server" ></asp:Label>
+                                                        <br />
+
+                                                        <label for="totcount" class="form-label">Total Price : </label> 
+                                                        <asp:Label ID="lbltotprice" class="card-title" runat="server" ></asp:Label>
+                                                        <br />
+
+                                                        <label for="totcount" class="form-label">Phone Number : </label> 
+                                                        <asp:Label ID="lblphone" class="card-title" runat="server" ></asp:Label>
+                                                        <br />
+                                                        <br />
                                                      <h2>  <label for="price" class="form-label">Thank you and enjoy the movie! <span id="thank you"></span></label></h2> <hr />
                                                     </div>
                                                     
@@ -37,8 +68,7 @@
                                                     <div class="col-md-12">
                                                         <br />
                                                         <asp:Button ID="BtnAdd" runat="server" class="btn btn-primary" Text="Download Ticket" OnClick="BtnAdd_Click" />
-
-
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
