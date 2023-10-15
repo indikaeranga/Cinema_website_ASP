@@ -23,7 +23,7 @@ namespace Cinema
             {
                 if (Session["LoggedInUser"].ToString() != "Super Admin")
                 {
-                    //MessageBox(this, "You are not permitted to register administrators. Please contact BookMyTheatre Team for registration.");
+                    //MessageBox(this, "You are not permitted to register administrators.");
                     Response.Redirect("Admin_Home.aspx");
                 }
                 else

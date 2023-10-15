@@ -58,7 +58,7 @@
                                     <li><a href="Movie_manage.aspx">Add Movie</a></li>
                                     <li><a href="Theater.aspx">Theater Manage</a></li>
                                     <li><a href="Movie_schedule.aspx">Schedule Movie</a></li>                                  
-                                    <li><a href="#">Seat Reservation</a></li>
+                                    <li><a href="Admin_Seat_res_Report.aspx">Seat Reservation Reports</a></li>
                                     <li><a href="Admin_Login.aspx">Log Out</a></li>
 
                                 </ul>
