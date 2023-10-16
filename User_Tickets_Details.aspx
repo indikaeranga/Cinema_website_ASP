@@ -57,7 +57,7 @@
                                                         <asp:Label ID="lbltotprice" class="card-title" runat="server" ></asp:Label>
                                                         <br />
 
-                                                        <label for="totcount" class="form-label">Phone Number : </label> 
+                                                        <label for="totcount" class="form-label">Email Address : </label> 
                                                         <asp:Label ID="lblphone" class="card-title" runat="server" ></asp:Label>
                                                         <br />
                                                         <br />
@@ -67,7 +67,8 @@
                                                     <!--    </center> -->
                                                     <div class="col-md-12">
                                                         <br />
-                                                        <asp:Button ID="BtnAdd" runat="server" class="btn btn-primary" Text="Download Ticket" OnClick="BtnAdd_Click" />
+                                                        <asp:Button ID="BtnAdd" runat="server" class="btn btn-primary" Text="Download Ticket" OnClick="BtnAdd_Click" /> &nbsp;&nbsp;
+                                                        <asp:Button ID="btnmail" runat="server" class="btn btn-success" Text="Email Ticket" OnClick="btnmail_Click"  />
                                                        
                                                     </div>
                                                 </div>

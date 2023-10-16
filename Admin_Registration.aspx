@@ -62,7 +62,7 @@
                         <div class="row"> 
                             <div class="col"> <h5>Admins</h5>
                                 <center>
-                                    <asp:GridView ID="GridView1" runat="server" CssClass="table table-striped"></asp:GridView>  
+                                    <asp:GridView ID="GridView1" runat="server" CssClass="table table-striped" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridView1_SelectedIndexChanged"></asp:GridView>  
                                 </center>
                             </div> 
                         </div>

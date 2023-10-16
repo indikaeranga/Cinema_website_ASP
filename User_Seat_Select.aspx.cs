@@ -77,7 +77,7 @@ namespace Cinema
             
             float adult_price = float.Parse(lbladultprice.Text);
             float child_price = float.Parse(lblchildprice.Text);
-            string phone = txtphonenumber.Text;
+            string mail = txtmail.Text;
             int moviescheduleid;
             if (int.TryParse(Request.QueryString["Schedule_ID"], out moviescheduleid))
             {
@@ -95,8 +95,8 @@ namespace Cinema
             using (con)
             {
                 // SQL INSERT statement
-                string insertQuery = "INSERT INTO Seat_Reservation_New (Schedule_ID, Adult_Seats, Child_Seats, No_Of_Seats, Total_Price, phone) " +
-                                     "VALUES (@Schedule_ID, @Adult_Seats, @Child_Seats, @No_Of_Seats, @Total_Price, @phone)";
+                string insertQuery = "INSERT INTO Seat_Reservation_New (Schedule_ID, Adult_Seats, Child_Seats, No_Of_Seats, Total_Price, Email) " +
+                                     "VALUES (@Schedule_ID, @Adult_Seats, @Child_Seats, @No_Of_Seats, @Total_Price, @email)";
 
                 SqlCommand command = new SqlCommand(insertQuery, con);
                 command.Parameters.AddWithValue("@Schedule_ID", moviescheduleid);
@@ -104,13 +104,13 @@ namespace Cinema
                 command.Parameters.AddWithValue("@Child_Seats", child_count);
                 command.Parameters.AddWithValue("@No_Of_Seats", totseat);
                 command.Parameters.AddWithValue("@Total_Price", totalprice);
-                command.Parameters.AddWithValue("@Phone", phone);
+                command.Parameters.AddWithValue("@email", mail);
                 try
                 {
                     con.Open();
                     command.ExecuteNonQuery();                  
                     con.Close();
-                    Response.Redirect("User_Tickets_Details.aspx?PN='"+phone+"'");
+                    Response.Redirect("User_Tickets_Details.aspx?PN=" + txtmail.Text.ToString().Trim());
                 }
                 catch (Exception ex)
                 {

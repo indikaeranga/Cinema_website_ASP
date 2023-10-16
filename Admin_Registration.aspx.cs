@@ -124,6 +124,27 @@ namespace Cinema
                 }
             }
         }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow selectedRow = GridView1.SelectedRow;
+            if (selectedRow != null)
+            {
+                // Retrieve the data from the selected row
+                string name = selectedRow.Cells[1].Text; // Modify the cell index as per your data structure
+                string username = selectedRow.Cells[2].Text; // Modify the cell index as per your data structure
+                string email = selectedRow.Cells[3].Text;
+                
+
+                TextName.Text = name;
+                TextUserName.Text = username;
+                TextEmail.Text = email;
+               
+                // Do something with the selected data, e.g., display it or process it
+                // You can also use these values for further actions
+                // movieName and description variables now contain the selected data
+            }
+        }
     }
 
 }

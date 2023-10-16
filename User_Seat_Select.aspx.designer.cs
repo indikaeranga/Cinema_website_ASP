@@ -33,13 +33,13 @@ namespace Cinema
         protected global::System.Web.UI.WebControls.TextBox Textchild;
 
         /// <summary>
-        /// txtphonenumber control.
+        /// txtmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtphonenumber;
+        protected global::System.Web.UI.WebControls.TextBox txtmail;
 
         /// <summary>
         /// BtnAdd control.

@@ -28,8 +28,8 @@
                                                         <asp:TextBox ID="Textchild" type="text" runat="server" class="form-control" TextMode="Number" MaxLength="0"></asp:TextBox>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label for="phonenm" class="form-label">Phone</label>
-                                                        <asp:TextBox ID="txtphonenumber" type="text" runat="server" class="form-control" TextMode="Number" MaxLength="0"></asp:TextBox>
+                                                        <label for="phonenm" class="form-label">Email</label>
+                                                        <asp:TextBox ID="txtmail" type="email" runat="server" class="form-control" TextMode="Email" MaxLength="0"></asp:TextBox>
                                                     </div>
                                                     <br />
                                                     <div class="col-md-12">
@@ -130,18 +130,16 @@
         function validateTextBoxes() {
             var adultTextBox = document.getElementById('<%= Textadult.ClientID %>');
             var childTextBox = document.getElementById('<%= Textchild.ClientID %>');
-            var phone = document.getElementById('<%= txtphonenumber.ClientID %>');
+            var mailaddr = document.getElementById('<%= txtmail.ClientID %>');
 
             if (adultTextBox.value.trim() === "" && childTextBox.value.trim() === "") {
                 alert("At least adult or child ticket should be select.");
                 return false;
             }
-
-            if (phone.value.trim().length != 10 ) {
-                alert('Enter 10 digit phone number');
+            if (mailaddr.value.trim() === "" ) {
+                alert("Please enter Email Address.");
                 return false;
             }
-
             return true;
         }
     </script>
