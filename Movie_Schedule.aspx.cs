@@ -81,10 +81,7 @@ namespace Cinema
         }
         private void PopulateMovieDropDown()
         {
-            // Your connection string name from web.config
-            
-
-            // Your SQL query to retrieve movie names and IDs
+          
             string query = "SELECT Movie_ID, Movie_Name FROM Movie";
 
             SqlConnection con = new SqlConnection(cn.connectionstring());

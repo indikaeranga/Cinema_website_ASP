@@ -13,8 +13,10 @@ namespace Cinema
     public partial class Admin_Registration : System.Web.UI.Page
     {
         ConString cn = new ConString();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (Session["LoggedInUser"] == null)
             {
                 Response.Redirect("Admin_Login.aspx");
@@ -84,29 +86,29 @@ namespace Cinema
             }
         }
 
-        public DataTable GetDataFromDatabase()
-        {
+        //public DataTable GetDataFromDatabase() //not use
+        //{
 
-            string query = "SELECT Name,User_Name,Email FROM Admin";
+        //    string query = "SELECT Name,User_Name,Email FROM Admin";
 
-            using (SqlConnection connection = new SqlConnection(cn.connectionstring()))
-            {
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    connection.Open();
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                    {
-                        DataTable dataTable = new DataTable();
-                        adapter.Fill(dataTable);
-                        return dataTable;
-                    }
-                }
-            }
-        }
+        //    using (SqlConnection connection = new SqlConnection(cn.connectionstring()))
+        //    {
+        //        using (SqlCommand command = new SqlCommand(query, connection))
+        //        {
+        //            connection.Open();
+        //            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+        //            {
+        //                DataTable dataTable = new DataTable();
+        //                adapter.Fill(dataTable);
+        //                return dataTable;
+        //            }
+        //        }
+        //    }
+        //}
         private void BindGridView()
         {
             //string connectionString = "YourConnectionString";
-            string query = "SELECT Name,User_Name as 'User Name',Email FROM Admin";
+            string query = "SELECT Admin_ID,Name,User_Name,Email FROM Admin";
 
             using (SqlConnection connection = new SqlConnection(cn.connectionstring()))
             {
@@ -131,11 +133,12 @@ namespace Cinema
             if (selectedRow != null)
             {
                 // Retrieve the data from the selected row
-                string name = selectedRow.Cells[1].Text; // Modify the cell index as per your data structure
-                string username = selectedRow.Cells[2].Text; // Modify the cell index as per your data structure
-                string email = selectedRow.Cells[3].Text;
-                
+                string id = selectedRow.Cells[1].Text;
+                string name = selectedRow.Cells[2].Text; // Modify the cell index as per your data structure
+                string username = selectedRow.Cells[3].Text; // Modify the cell index as per your data structure
+                string email = selectedRow.Cells[4].Text;
 
+                lbladminid.Text = id;
                 TextName.Text = name;
                 TextUserName.Text = username;
                 TextEmail.Text = email;
@@ -144,6 +147,57 @@ namespace Cinema
                 // You can also use these values for further actions
                 // movieName and description variables now contain the selected data
             }
+        }
+
+        protected void BtnDelete_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+
+                SqlConnection con = new SqlConnection(cn.connectionstring());
+                con.Open();
+                string sql = "delete from Admin where Admin_ID= '" + lbladminid.Text + "'  ";
+
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                BindGridView();
+                //MessageBox.Show("Data Added success");
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("invalid data insert. operation fail !");
+
+            }
+
+        }
+
+        protected void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            
+            string name = TextName.Text;
+            string username = TextUserName.Text;
+            string email = TextEmail.Text;
+            try
+            {
+
+                SqlConnection con = new SqlConnection(cn.connectionstring());
+                con.Open();
+                string sql = "update Admin set name = '" + name + "', user_name= '" + username + "',email= '" + email + "'  where Admin_ID= '" + lbladminid.Text + "'  ";
+
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                BindGridView();
+                //MessageBox.Show("Data Added success");
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("invalid data insert. operation fail !");
+
+            }
+
         }
     }
 

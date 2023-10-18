@@ -17,7 +17,7 @@
 
       <div class="container">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="card" >
                     
                     <div class="card-body">
@@ -45,9 +45,9 @@
                                 <div class="col-md-12">
                                     <br />
                                     <asp:Button ID="BtnAdd" runat="server" OnClientClick="return validateForm();" class="btn btn-primary" Text="Add New" OnClick="BtnAdd_Click" />
-                                    <asp:Button ID="BtnUpdate" runat="server"  class="btn btn-warning" Text="Update" />
-                                    <asp:Button ID="BtnDelete" runat="server"  class="btn btn-danger" Text="Delete" />
-                                    
+                                    <asp:Button ID="BtnUpdate" runat="server"  class="btn btn-warning" Text="Update" OnClientClick="return confirm('Are you sure you want to Update this record?');" OnClick="BtnUpdate_Click" />
+                                    <asp:Button ID="BtnDelete" runat="server"  class="btn btn-danger" Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" OnClick="BtnDelete_Click" />
+                                    <asp:Label ID="lbladminid" runat="server" Text="Label" Enabled="False" Visible="False"></asp:Label>
                                 </div>
                             </div> 
                         </div>
@@ -55,14 +55,21 @@
                 </div>
             </div>
 
-             <div class="col-md-7">
+             <div class="col-md-8">
                 <div class="card" >
                     
                     <div class="card-body">
                         <div class="row"> 
                             <div class="col"> <h5>Admins</h5>
                                 <center>
-                                    <asp:GridView ID="GridView1" runat="server" CssClass="table table-striped" AutoGenerateSelectButton="true" OnSelectedIndexChanged="GridView1_SelectedIndexChanged"></asp:GridView>  
+                                    <asp:GridView ID="GridView1" runat="server" CssClass="table table-striped" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" AutoGenerateColumns="False" AutoGenerateSelectButton="True">
+                                        <Columns>
+                                              <asp:BoundField DataField="Admin_ID" HeaderText="Admin ID" /> 
+                                            <asp:BoundField DataField="Name" HeaderText="Name" />
+                                            <asp:BoundField DataField="User_Name" HeaderText="User Name" />
+                                            <asp:BoundField DataField="Email" HeaderText="Email" />
+                                        </Columns>
+                                    </asp:GridView>  
                                 </center>
                             </div> 
                         </div>

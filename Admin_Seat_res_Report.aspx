@@ -24,9 +24,44 @@
                               
                         <div class="row">
                             &nbsp;&nbsp;&nbsp; 
-                            <asp:Button type="button" class="btn btn-primary" ID="BtnLogin" runat="server" Text="All Seat Reservation Details" OnClick="BtnLogin_Click" />
-                            <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" />
-                            </div> 
+                            <asp:Button type="button" class="btn btn-primary" ID="BtnAllSeats" runat="server" Text="All Seat Reservation Details" OnClick="BtnAllSeats_Click" />
+                        </div>                       
+                            <hr />                           
+                        <div class="row">
+                          &nbsp;&nbsp;&nbsp; <h4><asp:Label ID="Label1" runat="server" Text="Please select a Movie for display future reservations :"></asp:Label></h4>  &nbsp;&nbsp;&nbsp;
+                            <asp:DropDownList ID="DropDownList1_Moviename" runat="server" class="btn btn-secondary dropdown-toggle" ></asp:DropDownList>&nbsp;&nbsp;
+                            <asp:Button type="button" class="btn btn-primary" ID="Btnbymovie" runat="server" Text="Reservation Details" OnClick="Btnbymovie_Click"  />
+                            <br />                           
+                        </div> 
+                            <hr />
+                        
+                        <div class="row">
+                                 &nbsp;&nbsp;&nbsp; <h4><asp:Label ID="Label2" runat="server" Text="Upcomming schedules and reservations listed below. Report will show the reservations of movie."></asp:Label></h4>  &nbsp;&nbsp;&nbsp;
+                         
+                        </div>
+                        
+                        <div class="row">
+                          
+                            <asp:Repeater ID="MovieRepeater" runat="server" OnItemCommand="MovieRepeater_ItemCommand">
+                                <ItemTemplate>
+                                    <div class="col-lg-4 col-sm-4">
+                                        <div class="card"> <br /> 
+                                            <h5 class="shirt_text">Movie : <%# Eval("Movie_Name") %></h5>
+                                            <h5 class="shirt_text">Theater : <%# Eval("Theater_Name") %></h5>
+                                            <h5 class="shirt_text">Date : <%# Eval("Date") %></h5>
+                                            <h5 class="shirt_text">Time : <%# Eval("Time") %></h5>
+                                            
+                                            <center>
+                                                <asp:Button runat="server" Text="Show This Report" CssClass="btn btn-primary"
+                                                    CommandName="Select" CommandArgument=<%# Eval("Schedule_ID") %> > </asp:Button> 
+                                            </center><br />
+                                        </div> <br />
+                                    </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
+                           
+                        <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" />
                     </div>
                 </div>
             </div>
